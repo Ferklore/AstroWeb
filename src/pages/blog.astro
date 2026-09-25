@@ -2,19 +2,72 @@
 const pageTitle = "Mi blog con kegovc";
 import { getCollection } from "astro:content";
 import BaseLayout from '../layouts/BaseLayout.astro';
-const allPosts = await getCollection("blog");
 import BlogPost from '../components/BlogPost.astro';
+const allPosts = await getCollection("blog");
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <h2> Wattpad de kegov x Isaac proximamente </h2>
+  <h2 class="titulo">Mi blog de Astro</h2>
 
-    <p>This is where I will post about my journey learning Astro.</p>
-    <ul>{
+  <p> Listo porfe, hice esta practica por mi cuenta btw</p>
+
+  <h3>Posts</h3>
+  <ul class="posts">
+    {
       allPosts.map((post) => (
         <BlogPost url={`/posts/${post.id}/`} title={post.data.title} />
       ))
     }
-    </ul>
+  </ul>
 
+  <p class="nota">Próximamente: Wattpad de kegov x Isaac</p>
 </BaseLayout>
+
+<style>
+  .titulo {
+    display: inline-block;
+    background: #f99e1a;
+    color: white;
+    padding: 0.3rem 1.2rem;
+    font-style: italic;
+    transform: skewX(-10deg);
+  }
+
+  h3 {
+    color: #1c2536;
+    border-bottom: 3px solid #f99e1a;
+    padding-bottom: 0.3rem;
+  }
+
+  .posts {
+    list-style: none;
+    padding: 0;
+  }
+
+  /* :global porque los li y a vienen del componente BlogPost */
+  .posts :global(li) {
+    background: #eef3f8;
+    border-left: 5px solid #f99e1a;
+    margin-bottom: 0.6rem;
+  }
+
+  .posts :global(a) {
+    display: block;
+    padding: 0.7rem 1rem;
+    color: #1c2536;
+    text-decoration: none;
+  }
+
+  .posts :global(li:hover) {
+    background: #f99e1a;
+  }
+
+  .posts :global(li:hover a) {
+    color: white;
+  }
+
+  .nota {
+    margin-top: 2rem;
+    color: #666;
+  }
+</style>
