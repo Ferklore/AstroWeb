@@ -1,5 +1,25 @@
+/* Colores del sitio (inspirados en Overwatch).
+   Se definen una vez aquí y todos los archivos los usan con var(--nombre).
+   Para el modo oscuro solo se cambian los valores, no hay que repetir estilos. */
+:root {
+  --naranja: #f99e1a;
+  --azul: #1c2536;
+  --fondo: #eef3f8;
+  --tarjeta: #ffffff;
+  --texto: #1c2536;
+  --enlace: #b86200;
+}
+
+html.dark {
+  --fondo: #1c2536;
+  --tarjeta: #27334b;
+  --texto: #eef3f8;
+  --enlace: #f99e1a;
+}
+
 html {
-  background-color: #f1f5f9;
+  background-color: var(--fondo);
+  color: var(--texto);
   font-family: sans-serif;
 }
 
@@ -15,17 +35,38 @@ body {
   box-sizing: border-box;
 }
 
+a {
+  color: var(--enlace);
+}
+
+/* Título de cada página: franja naranja inclinada */
 h1 {
-  margin: 1rem 0;
+  display: inline-block;
+  margin: 1.5rem 0 1rem;
+  padding: 0.2rem 1.2rem;
   font-size: 2.5rem;
+  font-style: italic;
+  color: white;
+  background-color: var(--naranja);
+  transform: skewX(-10deg);
+}
+
+h3 {
+  border-bottom: 3px solid var(--naranja);
+  padding-bottom: 0.3rem;
+}
+
+header {
+  border-bottom: 3px solid var(--naranja);
+  padding-bottom: 0.5rem;
 }
 
 /* nav styles */
 
 .menu {
-  background-color: #0d0950;
+  background-color: var(--naranja);
   border: none;
-  color: #fff;
+  color: white;
   font-size: 1.2rem;
   font-weight: bold;
   padding: 5px 10px;
@@ -34,6 +75,7 @@ h1 {
 .nav-links {
   width: 100%;
   margin: 0;
+  display: none;
 }
 
 .nav-links a {
@@ -44,12 +86,13 @@ h1 {
   font-size: 1.2rem;
   font-weight: bold;
   text-transform: uppercase;
-  color: #0d0950;
+  color: var(--texto);
 }
 
 .nav-links a:hover,
 .nav-links a:focus {
-  background-color: #ff9776;
+  background-color: var(--naranja);
+  color: white;
 }
 
 :has(.menu[aria-expanded="true"]) .nav-links {
@@ -58,11 +101,8 @@ h1 {
 
 @media screen and (min-width: 636px) {
   .nav-links {
-    margin-left: 5em;
     display: block;
-    position: static;
     width: auto;
-    background: none;
   }
 
   .nav-links a {
@@ -70,31 +110,7 @@ h1 {
     padding: 15px 20px;
   }
 
-    .menu {
+  .menu {
     display: none;
   }
-  
-}
-
-html.dark {
-  background-color: #0d0950;
-  color: #fff;
-}
-
-.dark .menu {
-  background-color: #fff;
-  color: #000;
-}
-
-.dark .nav-links a:hover,
-.dark .nav-links a:focus {
-  color: #0d0950;
-}
-
-.dark .nav-links a {
-  color: #fff;
-}
-
-.dark a {
-  color: #ff9776;
 }

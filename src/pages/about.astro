@@ -1,69 +1,67 @@
 ---
-import '../styles/global.css';
-import Navigation from '../components/Navigation.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-const pageTitle = "About Me";
+const pageTitle = "Sobre mí";
 
 const identity = {
   firstName: "Fernao",
-  country: "Mexico",
-  occupation: "Student",
-  hobbies: ["Singing", "Boxing", "Writing"],
+  country: "México",
+  occupation: "estudiante del ceti (ya casi no)",
+  hobbies: ["cantar", "el box", "escribir"],
 };
 
-const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "C++", "Godot"];
 
 const happy = true;
 const finished = true;
 const goal = 3;
 
-const skillColor = "maroon";
+const skillColor = "#f99e1a";
 const fontWeight = "bold";
-const textCase = "Upper";
+const textCase = "uppercase";
 ---
 
-  <style define:vars={{skillColor, fontWeight, textCase}}>
-    h1 {
-      color: maroon;
-      font-size: 4rem;
-    }
-  .skill {
-      color: var(--skillColor);
-      font-weight: var(--fontWeight);
-      text-transform: var(--textCase);
-    }
-</style>
-
 <BaseLayout pageTitle={pageTitle}>
-    <h2>... and my new Astro site!</h2>
+  <h2>... y mi nuevo sitio en Astro</h2>
 
-    <p>I am working through Astro's introductory tutorial. This is the second page on my website, and it's the first one I built myself!</p>
+  <p>Estoy haciendo el tutorial de Astro. Esta es la segunda página del sitio y la primera que hice yo solo.</p>
 
-    <p>This site will update as I complete more of the tutorial, so keep checking back and see how my journey is going!</p>
-
-    <p>Here are a few facts about me:</p>
-
-    <ul>
-        <li>My name is {identity.firstName}.</li>
-        <li>I live in {identity.country} and I work as a {identity.occupation}.</li>
-        {identity.hobbies.length >= 2 &&
-        <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]} but I also like {identity.hobbies[2]}</li>
-        }
-    </ul>
-
-    <p>My skills are:</p>
+  <p>Unos datos sobre mí:</p>
 
   <ul>
-    {skills.map((skill) => <li class="skill"> {skill}</li>)}
-
-    {happy && <p>I am happy to be learning Astro!</p>}
-
-    {finished && <p>I finished this tutorial!</p>}
-
-    {goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
-
+    <li>Me llamo {identity.firstName}.</li>
+    <li>Vivo en {identity.country} y soy {identity.occupation}.</li>
+    {identity.hobbies.length >= 2 &&
+      <li>Dos de mis hobbies son {identity.hobbies[0]} y {identity.hobbies[1]}, pero también me gusta {identity.hobbies[2]}.</li>
+    }
   </ul>
 
+  <h3>Mis habilidades</h3>
+
+  <ul class="skills">
+    {skills.map((skill) => <li class="skill">{skill}</li>)}
+  </ul>
+
+  {happy && <p>¡Me la estoy pasando bien aprendiendo Astro!</p>}
+
+  {finished && <p>¡Terminé el tutorial!</p>}
+
+  {goal === 3 ? <p>Mi meta es terminar el ceti .</p> : <p> no terminé el ceti .</p>}
 </BaseLayout>
+
+<style define:vars={{ skillColor, fontWeight, textCase }}>
+  .skills {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .skill {
+    padding: 0.3rem 0.9rem;
+    background-color: var(--tarjeta);
+    border-left: 4px solid var(--skillColor);
+    font-weight: var(--fontWeight);
+    text-transform: var(--textCase);
+  }
+</style>
